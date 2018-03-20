@@ -12,11 +12,14 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(onStart:(NSString *)appId withChannelId:(NSString *)channelId withLog:(BOOL)bLog)
 {
-    [TalkingDataGA setVerboseLogDisabled:!bLog];
+    if (!bLog){
+        [TalkingDataGA setVerboseLogDisabled];
+    }
+    
     [TalkingDataGA onStart:appId withChannelId:channelId];
 }
 
-RCT_EXPORT_METHOD(setAccountName:(NSString *)accountId (NSString *)accountName)
+RCT_EXPORT_METHOD(setAccountName:(NSString *)accountId accountName:(NSString *)accountName)
 {
     NSString* aid = accountId;
     
@@ -25,10 +28,12 @@ RCT_EXPORT_METHOD(setAccountName:(NSString *)accountId (NSString *)accountName)
     }
     
     TDGAAccount* account = [TDGAAccount setAccount:aid];
-    [account setAccountName:accountName];
+    if (account != nil) {
+       [account setAccountName:accountName];
+    }
 }
 
-RCT_EXPORT_METHOD(setAccountType:(NSString *)accountId (int)accountType)
+RCT_EXPORT_METHOD(setAccountType:(NSString *)accountId accountType:(int)accountType)
 {
     NSString* aid = accountId;
     
@@ -37,19 +42,9 @@ RCT_EXPORT_METHOD(setAccountType:(NSString *)accountId (int)accountType)
     }
     
     TDGAAccount* account = [TDGAAccount setAccount:aid];
-    [account setAccountType:(TDGAAccountType)accountType];
-}
-
-RCT_EXPORT_METHOD(setAccountType:(NSString *)accountId (int)accountType)
-{
-    NSString* aid = accountId;
-    
-    if (aid == nil) {
-        aid = [TalkingDataGA getDeviceId];
+    if (account != nil) {
+        [account setAccountType:(TDGAAccountType)accountType];
     }
-    
-    TDGAAccount* account = [TDGAAccount setAccount:aid];
-    [account setAccountType:(TDGAAccountType)accountType];
 }
 
 @end
