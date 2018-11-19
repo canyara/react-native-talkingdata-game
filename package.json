@@ -1,7 +1,6 @@
-
 {
   "name": "react-native-talkingdata-game",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,6 +14,16 @@
   "peerDependencies": {
     "react-native": "^0.52.0",
     "react-native-windows": "0.41.0-rc.1"
-
+  },
+  "rnpm": {
+    "ios": {
+      "sharedLibraries": [
+        "AdSupport",
+        "CoreTelephony",
+        "Security",
+        "SystemConfiguration",
+        "libz"
+      ]
+    }
   }
 }

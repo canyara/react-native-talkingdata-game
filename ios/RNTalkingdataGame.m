@@ -33,6 +33,20 @@ RCT_EXPORT_METHOD(setAccountName:(NSString *)accountId accountName:(NSString *)a
     }
 }
 
+RCT_EXPORT_METHOD(setAcountLevel:(NSString *)accountId accountLevel:(int)accountLevel)
+{
+    NSString* aid = accountId;
+    
+    if (aid == nil) {
+        aid = [TalkingDataGA getDeviceId];
+    }
+    
+    TDGAAccount* account = [TDGAAccount setAccount:aid];
+    if (account != nil) {
+        [account setLevel:accountLevel];
+    }
+}
+
 RCT_EXPORT_METHOD(setAccountType:(NSString *)accountId accountType:(int)accountType)
 {
     NSString* aid = accountId;

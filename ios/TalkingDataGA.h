@@ -17,6 +17,7 @@ typedef enum {
     kAccountQQ              = 3,    // QQ账户
     kAccountTencentWeibo    = 4,    // 腾讯微博
     kAccountND91            = 5,    // 91账户
+    kAccountTypeWeiXin      = 6,    // 微信
     kAccountType1           = 11,   // 预留1
     kAccountType2           = 12,   // 预留2
     kAccountType3           = 13,   // 预留3
@@ -53,12 +54,24 @@ typedef enum {
 + (void)setVerboseLogDisabled;
 
 /**
+ *  @method backgroundSessionEnabled
+ *  开启后台使用时长统计，需在SDK初始化之前调用。
+ */
++ (void)backgroundSessionEnabled;
+
+/**
  *	@method	onStart     初始化统计实例     请在application:didFinishLaunchingWithOptions:方法里调用
  *	@param 	appId       appId           类型:NSString     应用的唯一标识，统计后台注册得到
  *  @param 	channelId   渠道名(可选)      类型:NSString     如“app store”
  */
 + (void)onStart:(NSString *)appId withChannelId:(NSString *)channelId;
 
+/**
+ *	@method	onEvent     自定义事件
+ *	@param 	eventId     事件ID    类型:NSString
+ *	@param 	eventData   事件参数   类型:键值对(key只支持NSString, value支持NSString和NSNumber)
+ */
++ (void)onEvent:(NSString *)eventId eventData:(NSDictionary *)eventData;
 
 /**
  *  @method setLatitude 设置经纬度
