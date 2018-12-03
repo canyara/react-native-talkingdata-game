@@ -29,7 +29,7 @@ RCT_EXPORT_METHOD(setAccountName:(NSString *)accountId accountName:(NSString *)a
     
     TDGAAccount* account = [TDGAAccount setAccount:aid];
     if (account != nil) {
-       [account setAccountName:accountName];
+        [account setAccountName:accountName];
     }
 }
 
@@ -61,19 +61,10 @@ RCT_EXPORT_METHOD(setAccountType:(NSString *)accountId accountType:(int)accountT
     }
 }
 
-RCT_EXPORT_METHOD(onEvent::(NSString *)accountId eventId(NSString *)eventId eventInfo:(NSDictionary *)eventInfo)
+RCT_EXPORT_METHOD(onEvent:(NSString *)eventId eventInfo:(NSDictionary *)eventInfo)
 {
-    NSString* aid = accountId;
-    
-    if (aid == nil) {
-        aid = [TalkingDataGA getDeviceId];
-    }
-    
-    TDGAAccount* account = [TDGAAccount setAccount:aid];
-    if (account != nil) {
-        [account onEvent:eventId eventData:eventInfo];
-    }
+    [TalkingDataGA onEvent:eventId eventData:eventInfo];
 }
 
 @end
-  
+
