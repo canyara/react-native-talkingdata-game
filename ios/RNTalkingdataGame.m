@@ -61,5 +61,19 @@ RCT_EXPORT_METHOD(setAccountType:(NSString *)accountId accountType:(int)accountT
     }
 }
 
+RCT_EXPORT_METHOD(onEvent:(NSString *)eventId eventInfo:(NSDictionary *)eventInfo)
+{
+    NSString* aid = accountId;
+    
+    if (aid == nil) {
+        aid = [TalkingDataGA getDeviceId];
+    }
+    
+    TDGAAccount* account = [TDGAAccount setAccount:aid];
+    if (account != nil) {
+        [account onEvent:eventId eventData:eventInfo];
+    }
+}
+
 @end
   
