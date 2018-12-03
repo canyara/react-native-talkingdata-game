@@ -61,7 +61,7 @@ RCT_EXPORT_METHOD(setAccountType:(NSString *)accountId accountType:(int)accountT
     }
 }
 
-RCT_EXPORT_METHOD(onEvent:(NSString *)eventId eventInfo:(NSDictionary *)eventInfo)
+RCT_EXPORT_METHOD(onEvent::(NSString *)accountId eventId(NSString *)eventId eventInfo:(NSDictionary *)eventInfo)
 {
     NSString* aid = accountId;
     
